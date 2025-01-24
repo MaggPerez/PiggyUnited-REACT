@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { ref, set, get } from 'firebase/database';
 import { database } from "./firebase";
+import { useNavigate } from "react-router-dom";
 
 /**
  * Function for login method when user enter's their username and 
@@ -13,6 +14,8 @@ const LoginFunctions = () => {
 
     const[userData, setUserData] = useState(null);
     const [error, setError] = useState("");
+
+    const navigate = useNavigate();
 
 
 
@@ -72,6 +75,8 @@ const LoginFunctions = () => {
                     setUserData(user);
                     setError("");
                     console.log("User logged in successfully!");
+
+                    
                 }
                 else{
                     //If the user's password is incorrect, display an error message
@@ -109,7 +114,7 @@ const LoginFunctions = () => {
 
         //Add a little delay and then switch to the main menu
         setTimeout(function(){
-            window.location.href = "dashboard.html";
+            navigate('/dashboard');
         }, 2000);
 
     }
@@ -138,7 +143,7 @@ const LoginFunctions = () => {
 
         //Add a little delay and then switch to the main menu
         setTimeout(function(){
-            window.location.href = "dashboard.html";
+            navigate('/dashboard');
         }, 2000);
 
     }

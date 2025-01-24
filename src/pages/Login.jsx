@@ -1,5 +1,5 @@
 import React from "react";
-import LoginFunctions from "./loginScript"
+import LoginFunctions from "../loginScript"
 
 function Login(){
     const {
