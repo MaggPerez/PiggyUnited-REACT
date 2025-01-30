@@ -28,7 +28,7 @@ window.dispatchEvent(new Event('resize'));
   return (
     <div className='main'>
       <nav id="mySidebar" className="sidebar" style={{ transition: '0.3s' }}>
-        <a href="dashboard.html"></a>
+      <a href=""><img src="images/logo_bank.svg" alt="" /></a>
         <a id="hide-menu-icon" href="#" className="closebtn" onClick={closeNav}>&times;</a>
         <a href="dashboard.html">Home</a>
         <a href="account.html">Account</a>
