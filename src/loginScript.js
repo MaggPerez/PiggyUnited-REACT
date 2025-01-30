@@ -71,7 +71,7 @@ const LoginFunctions = () => {
 
                 //Checking to see if the user's password is correct
                 if(user.Password === Password){
-                    loginSuccessMessage(user)
+                    loginSuccessMessage(Username)
                     setUserData(user);
                     setError("");
                     console.log("User logged in successfully!");
