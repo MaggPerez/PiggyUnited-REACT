@@ -32,9 +32,9 @@ window.dispatchEvent(new Event('resize'));
       <Link className='link' to="/dashboard"><img src="images/logo_bank.svg" alt="" /></Link>
         <a id="hide-menu-icon" href="#" className="closebtn" onClick={closeNav}>&times;</a>
         <Link to="/dashboard">Home</Link>
-        <Link to="">Account</Link>
-        <Link to="">History</Link>
-        <Link to="">Credit Cards</Link>
+        <Link to="/account">Account</Link>
+        <Link to="/history">History</Link>
+        {/* <Link to="">Credit Cards</Link> */}
         <Link id="logout" to="/logout">Log out</Link>
       </nav>
 

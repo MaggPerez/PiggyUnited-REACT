@@ -11,6 +11,8 @@ import Dashboard from './pages/Dashboard.jsx'
 import Checkings from './pages/Checkings.jsx';
 import Savings from './pages/Savings.jsx'
 import CD from './pages/CD.jsx'
+import Account from './pages/Account.jsx'
+import History from './pages/History.jsx'
 
 const router = createBrowserRouter([{
   path: '/',
@@ -26,6 +28,10 @@ const router = createBrowserRouter([{
   element: <Dashboard />,
 },
 {
+  path: '/account',
+  element: <Account />
+},
+{
   path: '/checkings',
   element: <Checkings />
 },
@@ -36,6 +42,10 @@ const router = createBrowserRouter([{
 {
   path: '/cd',
   element: <CD />
+},
+{
+  path: 'history',
+  element: <History />
 }
 
 ]);

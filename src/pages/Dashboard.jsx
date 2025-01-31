@@ -49,16 +49,19 @@ function Dashboard() {
                     <div id="hover-mode" className="box">
                         <div className="box-content">
                             <img src="images/Credit_Card.svg" alt="Credit Card Icon" />
-                            <h1>Credit Cards</h1>
+                            <h1>Credit Cards (Coming Soon)</h1>
                         </div>
                     </div>
 
                     {/* History Window */}
                     <div id="hover-mode" className="box">
-                        <div className="box-content">
-                            <img src="images/history_icon.svg" alt="History Icon" />
-                            <h1>History</h1>
-                        </div>
+                        <Link className="link" to="/history">
+                            <div className="box-content">
+                                <img src="images/history_icon.svg" alt="History Icon" />
+                                <h1>History</h1>
+                            </div>
+                        
+                        </Link>
                     </div>
                 </div>
             </main>
