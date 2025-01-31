@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Sidebar = () => {
 
@@ -28,13 +29,13 @@ window.dispatchEvent(new Event('resize'));
   return (
     <div className='main'>
       <nav id="mySidebar" className="sidebar" style={{ transition: '0.3s' }}>
-      <a href=""><img src="images/logo_bank.svg" alt="" /></a>
+      <Link className='link' to="/dashboard"><img src="images/logo_bank.svg" alt="" /></Link>
         <a id="hide-menu-icon" href="#" className="closebtn" onClick={closeNav}>&times;</a>
-        <a href="dashboard.html">Home</a>
-        <a href="account.html">Account</a>
-        <a href="history.html">History</a>
-        <a href="creditcard.html">Credit Cards</a>
-        <a id="logout" href="index.html">Log out</a>
+        <Link to="/dashboard">Home</Link>
+        <Link to="">Account</Link>
+        <Link to="">History</Link>
+        <Link to="">Credit Cards</Link>
+        <Link id="logout" to="/logout">Log out</Link>
       </nav>
 
       <span id='hide-menu-icon' style={{ fontSize: '45px', cursor: 'pointer' }} onClick={openNav}>&#9776;</span>
@@ -42,6 +43,5 @@ window.dispatchEvent(new Event('resize'));
   );
 };
 
-// Fix sidebar
 
 export default Sidebar;

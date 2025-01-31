@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Sidebar from "../Sidebar";
 
 function CD(){
@@ -5,7 +6,7 @@ function CD(){
         <>
         <Sidebar />
         <main className="main">
-            <a href="#"><button className="back-button">Exit CD</button></a>
+            <Link to="/dashboard"><button className="back-button">Exit CD</button></Link>
             <h1>CD</h1>
             <h3>What would you like to do?</h3>
 

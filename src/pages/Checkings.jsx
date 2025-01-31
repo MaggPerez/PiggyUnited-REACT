@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Sidebar from "../Sidebar";
 
 
@@ -9,7 +10,7 @@ function Checkings(){
             <Sidebar />
             <main className="main">
                 {/* Add link to go back */}
-                <button className="back-button">Exit Checkings</button>
+                <Link to="/dashboard"><button className="back-button">Exit Checkings</button></Link>
                 <h1>Checkings</h1>
                 <h3>What would you like to do?</h3>
 

@@ -1,5 +1,5 @@
 import React from "react";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Sidebar from "../Sidebar";
 
 
@@ -13,28 +13,36 @@ function Dashboard() {
                 <h3 id="welcome-user">Welcome {name}! Select your desired choice below.</h3>
 
                 <div id="main-container" className="container">
+
                     {/* Checkings Option */}
                     <div id="hover-mode" className="box">
-                        <div className="box-content">
-                            <img src="images/Checkings_Icon.svg" alt="Checkings Icon" />
-                            <h1>Checkings</h1>
-                        </div>
+                        <Link className="link" to="/checkings">
+                            <div className="box-content">
+                                <img src="images/Checkings_Icon.svg" alt="Checkings Icon" />
+                                <h1>Checkings</h1>
+                            </div>
+                        
+                        </Link>
                     </div>
 
                     {/* Savings Option */}
                     <div id="hover-mode" className="box">
-                        <div className="box-content">
-                            <img src="images/savings_icon.svg" alt="Savings Icon" />
-                            <h1>Savings</h1>
-                        </div>
+                        <Link className="link" to="/savings">
+                            <div className="box-content">
+                                <img src="images/savings_icon.svg" alt="Savings Icon" />
+                                <h1>Savings</h1>
+                            </div>
+                        </Link>
                     </div>
 
                     {/* CD Window */}
                     <div id="hover-mode" className="box">
-                        <div className="box-content">
-                            <img src="images/cd_icon.svg" alt="CD Icon" />
-                            <h1>CD</h1>
-                        </div>
+                        <Link className="link" to="/cd">
+                            <div className="box-content">
+                                <img src="images/cd_icon.svg" alt="CD Icon" />
+                                <h1>CD</h1>
+                            </div>
+                        </Link>
                     </div>
 
                     {/* Credit Card Window */}

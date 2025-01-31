@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Sidebar from "../Sidebar";
 
 function Savings(){
@@ -5,7 +6,7 @@ function Savings(){
         <>
             <Sidebar />
             <main className="main">
-                <a href="#"><button className="back-button">Exit Savings</button></a>
+                <Link to="/dashboard"><button className="back-button">Exit Savings</button></Link>
                 <h1>Savings</h1>
                 <h3>What would you like to do?</h3>
 
