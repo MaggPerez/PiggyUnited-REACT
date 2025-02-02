@@ -1,5 +1,8 @@
 import { Link } from "react-router-dom";
 import Sidebar from "../Sidebar";
+import { addUser, getUsers, getUser, updateUser } from '../Bank';
+
+
 
 
 
@@ -28,11 +31,11 @@ function Checkings(){
                     {/* Field for user to select pre-selected choices */}
                     <div className="amount-box">
                         <h2>Pre-selected Choices</h2>
-                        <button class="amount-button" data-value="5">$5</button>
-                        <button class="amount-button" data-value="10">$10</button>
-                        <button class="amount-button" data-value="20">$20</button>
-                        <button class="amount-button" data-value="50">$50</button>
-                        <button id="amount-width" class="amount-button" data-value="100" >$100</button>
+                        <button className="amount-button" data-value="5">$5</button>
+                        <button className="amount-button" data-value="10">$10</button>
+                        <button className="amount-button" data-value="20">$20</button>
+                        <button className="amount-button" data-value="50">$50</button>
+                        <button id="amount-width" className="amount-button" data-value="100" >$100</button>
                     </div>
 
                     {/* Field for user to add amount */}
@@ -42,10 +45,10 @@ function Checkings(){
                     </div>
 
                     {/* Field for user to deposit or withdraw */}
-                    <div class="transaction-box">
+                    <div className="transaction-box">
                         <h2>Select your choice:</h2>
-                        <div id="hover-mode-deposit" class="box"><h1>Deposit</h1></div>
-                        <div id="hover-mode-withdraw" class="box"><h1>Withdraw</h1></div>
+                        <div id="hover-mode-deposit" onClick={updateUser} className="box"><h1>Deposit</h1></div>
+                        <div id="hover-mode-withdraw" onClick={getUser} className="box"><h1>Withdraw</h1></div>
                     </div>
 
                 </div>

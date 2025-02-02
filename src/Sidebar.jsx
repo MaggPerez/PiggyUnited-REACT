@@ -4,18 +4,18 @@ import { Link } from 'react-router-dom';
 const Sidebar = () => {
 
   // Function that helps to automatically display Sidebar when screen width is >= 1024
-  window.addEventListener('resize', function() {
-    if (window.innerWidth >= 1024) {
-        document.getElementById("mySidebar").style.width = "200px";
-        document.querySelector('.main').style.marginLeft = "200px";
-    } else {
-        document.getElementById("mySidebar").style.width = "0";
-        document.querySelector('.main').style.marginLeft = "0";
-    }
-});
+//   window.addEventListener('resize', function() {
+//     if (window.innerWidth >= 1024) {
+//         document.getElementById("mySidebar").style.width = "200px";
+//         document.querySelector('.main').style.marginLeft = "200px";
+//     } else {
+//         document.getElementById("mySidebar").style.width = "0";
+//         document.querySelector('.main').style.marginLeft = "0";
+//     }
+// });
 
 
-window.dispatchEvent(new Event('resize'));
+// window.dispatchEvent(new Event('resize'));
 
 
   const openNav = () => {

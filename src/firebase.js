@@ -2,6 +2,7 @@
 // Import Firebase modules
 import { initializeApp } from "firebase/app";
 import { get, getDatabase } from 'firebase/database';
+import { getFirestore, collection, addDoc, getDocs } from "firebase/firestore";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -19,9 +20,8 @@ apiKey: import.meta.env.VITE_API_KEY,
 const app = initializeApp(firebaseConfig);
 
 // Initialize Firestore
-// const db = getFirestore(app);
+export const db = getFirestore(app);
 export const database = getDatabase(app);
-
 
 
 
