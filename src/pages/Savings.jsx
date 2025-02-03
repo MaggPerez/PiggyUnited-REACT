@@ -1,5 +1,8 @@
 import { Link } from "react-router-dom";
 import Sidebar from "../Sidebar";
+import { addUser, getUsers, getBalance, updateUser } from '../Bank';
+import PageComponent from "../PageComponent";
+import Balance from "../Balance";
 
 function Savings(){
     return(
@@ -7,13 +10,13 @@ function Savings(){
             <Sidebar />
             <main className="main">
                 <Link to="/dashboard"><button className="back-button">Exit Savings</button></Link>
-                <h1>Savings</h1>
+                <h1><PageComponent pageName="Savings" /></h1>
                 <h3>What would you like to do?</h3>
 
                 {/* Banner */}
                 <div className="banner">
                     <div className="banner-text">
-                        <h1 id="savings-balance">$0.00</h1>
+                        <Balance account="savings" id="savings-balance" />
                         <p>Available Balance</p>
                     </div>
                 </div>
@@ -27,7 +30,7 @@ function Savings(){
 
                     {/* Buttons */}
                     <div id="hover-mode-deposit" className="box"><h1>Deposit</h1></div>
-                    <div id="hover-mode-withdraw" className="box"><h1>Withdraw</h1></div>
+                    <div id="hover-mode-withdraw" onClick={getBalance} className="box"><h1>Withdraw</h1></div>
                 </div>
             </main>
         </>

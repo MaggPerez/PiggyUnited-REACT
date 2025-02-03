@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import Sidebar from "../Sidebar";
-import { addUser, getUsers, getUser, updateUser } from '../Bank';
+import { addUser, getUsers, getBalance, updateUser } from '../Bank';
+import PageComponent from "../PageComponent";
+import Balance from "../Balance";
 
 
 
@@ -14,13 +16,17 @@ function Checkings(){
             <main className="main">
                 {/* Add link to go back */}
                 <Link to="/dashboard"><button className="back-button">Exit Checkings</button></Link>
-                <h1>Checkings</h1>
+                    
+                    {/* Displaying title name and setting page name */}
+                <h1><PageComponent /></h1>
+                {/* <h1>Checkings</h1> */}
                 <h3>What would you like to do?</h3>
 
                 {/* Banner showcasing the user's available balance */}
                 <div className="banner">
                     <div className="banner-text">
-                        <h1 id="checkings-balance">$0.00</h1>
+                        {/* <h1 id="checkings-balance">$0.00</h1> */}
+                        <Balance account="checkings" id="checkings-balance" />
                         <p>Available Balance</p>
                     </div>
                 </div>
@@ -48,7 +54,7 @@ function Checkings(){
                     <div className="transaction-box">
                         <h2>Select your choice:</h2>
                         <div id="hover-mode-deposit" onClick={updateUser} className="box"><h1>Deposit</h1></div>
-                        <div id="hover-mode-withdraw" onClick={getUser} className="box"><h1>Withdraw</h1></div>
+                        <div id="hover-mode-withdraw" onClick={getBalance} className="box"><h1>Withdraw</h1></div>
                     </div>
 
                 </div>

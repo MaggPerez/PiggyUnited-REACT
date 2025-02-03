@@ -1,6 +1,17 @@
 import { db } from "./firebase"
 import { collection, addDoc, getDocs, getDoc, doc, updateDoc } from "firebase/firestore"
 
+import { useState, useEffect } from "react";
+
+
+
+
+
+//Getting the user's name
+let name = localStorage.getItem('username')
+let account = localStorage.getItem('pageName').toLowerCase();
+
+
 // Function to add a user
 export const addUser = async () => {
     try {
@@ -25,14 +36,14 @@ export const getUsers = async () => {
 
 
 //Gets single user
-export const getUser = async () => {
+export const getBalance = async (userAccount) => {
     try {
-      const userRef = doc(db, "checkings", 'mag');
+      const userRef = doc(db, userAccount, name);
       const userSnap = await getDoc(userRef);
       if (userSnap.exists()) {
         console.log("Total: ", userSnap.data());
         let balance = userSnap.data().balance;
-        document.getElementById('checkings-balance').innerHTML = "$" + Number(balance).toFixed(2);
+        // document.getElementById('checkings-balance').innerHTML = "$" + Number(balance).toFixed(2);
         return { balance: userSnap.balance, ...userSnap.data() };
       } else {
         console.log("No such user found!");
@@ -46,7 +57,7 @@ export const getUser = async () => {
 
 //Updates balance
 export const updateUser = async () => {
-    const userRef = doc(db, "checkings", 'mag');
+    const userRef = doc(db, "checkings", name);
 
     try {
         await updateDoc(userRef, {
@@ -58,8 +69,4 @@ export const updateUser = async () => {
     }
 };
 
-/**
- * Continue integrating firebase
- * 
- * Decide if you want to turn this bank.js file into objects or not
- */
+

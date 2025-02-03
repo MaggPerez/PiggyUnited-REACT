@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Sidebar from "../Sidebar";
+import PageComponent from "../PageComponent";
 
 
 function Dashboard() {

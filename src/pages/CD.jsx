@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import Sidebar from "../Sidebar";
+import Balance from "../Balance";
 
 function CD(){
     return(
@@ -13,7 +14,7 @@ function CD(){
             {/* Banner */}
             <div className="banner">
                 <div className="banner-text">
-                    <h1 id="cd-balance">$0.00</h1>
+                    <Balance account="cd" id="cd-balance" />
                     <p>Available Balance</p>
                 </div>
             </div>
