@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import Sidebar from "../Sidebar";
-import { addUser, getUsers, getBalance, updateUser } from '../Bank';
+import { addUser, getUsers, getBalance, setWithdraw } from '../Bank';
 import PageComponent from "../PageComponent";
 import Balance from "../Balance";
 
@@ -30,7 +30,7 @@ function Savings(){
 
                     {/* Buttons */}
                     <div id="hover-mode-deposit" className="box"><h1>Deposit</h1></div>
-                    <div id="hover-mode-withdraw" onClick={getBalance} className="box"><h1>Withdraw</h1></div>
+                    <div id="hover-mode-withdraw" onClick={setWithdraw} className="box"><h1>Withdraw</h1></div>
                 </div>
             </main>
         </>

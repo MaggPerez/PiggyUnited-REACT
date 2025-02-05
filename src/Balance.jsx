@@ -11,6 +11,7 @@ import { getBalance } from "./Bank";
 export function Balance({account}){
     const [balance, setBalance] = useState("0");
 
+
     useEffect(() => {
         async function fetchBalance() {
             const data = await getBalance(account);

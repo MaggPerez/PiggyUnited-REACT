@@ -1,5 +1,6 @@
 import { db } from "./firebase"
 import { collection, addDoc, getDocs, getDoc, doc, updateDoc } from "firebase/firestore"
+import Balance from "./Balance";
 
 import { useState, useEffect } from "react";
 
@@ -9,7 +10,7 @@ import { useState, useEffect } from "react";
 
 //Getting the user's name
 let name = localStorage.getItem('username')
-let account = localStorage.getItem('pageName').toLowerCase();
+let account = localStorage.getItem('pageName');
 
 
 // Function to add a user
@@ -35,15 +36,14 @@ export const getUsers = async () => {
 };
 
 
-//Gets single user
+//Gets user info based on what account they are on
 export const getBalance = async (userAccount) => {
     try {
       const userRef = doc(db, userAccount, name);
       const userSnap = await getDoc(userRef);
       if (userSnap.exists()) {
-        console.log("Total: ", userSnap.data());
         let balance = userSnap.data().balance;
-        // document.getElementById('checkings-balance').innerHTML = "$" + Number(balance).toFixed(2);
+        localStorage.setItem("a", userSnap.data().balance );
         return { balance: userSnap.balance, ...userSnap.data() };
       } else {
         console.log("No such user found!");
@@ -55,18 +55,61 @@ export const getBalance = async (userAccount) => {
 };
 
 
-//Updates balance
-export const updateUser = async () => {
-    const userRef = doc(db, "checkings", name);
 
-    try {
-        await updateDoc(userRef, {
-        balance: 500,
-        });
-        console.log("Document successfully updated!");
-    } catch (e) {
-        console.error("Error updating document: ", e);
-    }
+
+
+/**
+ * Function to deposit
+ */
+export const setDeposit = async (depositAmount, setBalance) => {
+  const userRef = doc(db, "checkings", name);
+  
+  try {
+      const userSnap = await getDoc(userRef);
+      if (!userSnap.exists()) {
+          console.log("No such user found!");
+          return;
+      }
+
+      let currentBalance = userSnap.data().balance;
+      let newBalance = currentBalance + depositAmount;
+
+      await updateDoc(userRef, {
+          balance: newBalance,
+      });
+
+      setBalance(newBalance); // Update UI immediately
+      console.log(`Updated balance: ${newBalance}`);
+  } catch (e) {
+      console.error("Error updating balance: ", e);
+  }
 };
 
 
+
+/**
+ * Function to withdraw
+ */
+export const setWithdraw = async (withdrawalAmount, setBalance) => {
+  const userRef = doc(db, "checkings", name);
+  
+  try {
+      const userSnap = await getDoc(userRef);
+      if (!userSnap.exists()) {
+          console.log("No such user found!");
+          return;
+      }
+
+      let currentBalance = userSnap.data().balance;
+      let newBalance = currentBalance - withdrawalAmount;
+
+      await updateDoc(userRef, {
+          balance: newBalance,
+      });
+
+      setBalance(newBalance); // Update UI immediately
+      console.log(`Updated balance: ${newBalance}`);
+  } catch (e) {
+      console.error("Error updating balance: ", e);
+  }
+};
