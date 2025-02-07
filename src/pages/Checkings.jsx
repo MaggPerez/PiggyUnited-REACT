@@ -5,9 +5,14 @@ import { addUser, getUsers, getBalance, setDeposit, setWithdraw } from '../Bank'
 import PageComponent from "../PageComponent";
 import Balance from "../Balance";
 
+import { setDocumentTitle } from "../script";
+
+
+
 
 
 function Checkings(){
+    setDocumentTitle("Checkings")
     const [balance, setBalance] = useState(0)
     const [userAmount, setAmount] = useState("");
     const [withdraw, setWithdrawal] = useState(0);

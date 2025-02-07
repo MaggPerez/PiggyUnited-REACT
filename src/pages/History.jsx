@@ -1,7 +1,9 @@
 import { Link } from "react-router-dom";
 import Sidebar from "../Sidebar";
+import { setDocumentTitle } from "../script";
 
 function History(){
+    setDocumentTitle("History")
     return(
         <>
             <Sidebar />

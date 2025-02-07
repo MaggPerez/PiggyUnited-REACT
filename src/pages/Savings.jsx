@@ -3,8 +3,10 @@ import Sidebar from "../Sidebar";
 import { addUser, getUsers, getBalance, setWithdraw } from '../Bank';
 import PageComponent from "../PageComponent";
 import Balance from "../Balance";
+import { setDocumentTitle } from "../script";
 
 function Savings(){
+    setDocumentTitle("Savings")
     return(
         <>
             <Sidebar />

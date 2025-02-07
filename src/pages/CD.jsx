@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom";
 import Sidebar from "../Sidebar";
 import Balance from "../Balance";
+import { setDocumentTitle } from "../script";
 
 function CD(){
+    setDocumentTitle("CD")
     return(
         <>
         <Sidebar />
