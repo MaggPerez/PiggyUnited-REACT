@@ -59,7 +59,10 @@ export const getBalance = async (userAccount) => {
 
 
 /**
- * Function to deposit
+ * 
+ * @param {The amount the user wants to deposit} depositAmount 
+ * @param {setBalance will update the user's available balance} setBalance 
+ * @returns 
  */
 export const setDeposit = async (depositAmount, setBalance) => {
   const userRef = doc(db, "checkings", name);

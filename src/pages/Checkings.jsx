@@ -14,6 +14,9 @@ function Checkings(){
 
     const [isActive, setActive] = useState(null);
 
+    /**
+     * Retrieves user's available balance for checkings
+     */
     useEffect(() => {
         async function fetchBalance(){
             const data = await getBalance('checkings');
@@ -24,20 +27,58 @@ function Checkings(){
 
 
     /**
-     * Function to deposit user's amount
+     * Function to deposit user's amount into firebase
      */
     const handleDeposit = async () => {
-        if(userAmount === ""){
+        const arrayList = ["5", "10", "20", "50", "100"];
+        
+        //If an amount choice was selected and the user puts in a value, both gets added into one
+        if(isActive && userAmount !== ""){
+            for(let i = 0; i < arrayList.length; i++){
+                if(isActive === arrayList[i]){
+
+                    //Adding both amount choice and user's value
+                    handleAmountOptions(Number(arrayList[i]) + userAmount);
+                }
+            }
+        }
+        //Checking if one of the pre-selected choices was chosen
+        else if(isActive){
+
+            //If a pre-selected choice was picked and it equals "5 or 10 or 20, etc," it will get deposited
+            for(let i = 0; i < arrayList.length; i++){
+                if(isActive === arrayList[i]){
+                    handleAmountOptions(Number(arrayList[i]));
+                }
+            }
+
+        }
+            //If none of the choices were selected and input field is empty, an alert will be sent
+        else if(userAmount === ""){
             alert("Enter amount");
         }
         else{
             await setDeposit(userAmount, setBalance);
 
+            //Clears the input field
+            setAmount('');
         }
     }
 
     /**
-     * Function to withdraw user's amount
+     * 
+     * @param {The pre} amountChoice 
+     */
+    const handleAmountOptions = async (amountChoice) => {
+        await setDeposit(amountChoice, setBalance);
+
+        //Clearing input field and deselecting amount choice
+        setActive('');
+        setAmount('');
+    }
+
+    /**
+     * Function to withdraw user's amount into firebase
      */
     const handleWithdrawal = async () => {
         if(userAmount === ""){
@@ -45,19 +86,22 @@ function Checkings(){
         }
         else{
             await setWithdraw(userAmount, setBalance);
+
+            //Clears the input field
+            setAmount('');
         }
     }
 
     /**
-     * Continue working here        ****************************************************
+     * Continue working here
      * @param {*} button 
      */
-    const handleClick = async (button) => {
-        setActive(button);
+    const handleClick = async (selectedButton) => {
+        setActive(selectedButton);
     }
 
 
-
+    //              Continue adding functions to the withdraw
 
     return (
         <>
@@ -85,11 +129,22 @@ function Checkings(){
                     {/* Field for user to select pre-selected choices */}
                     <div className="amount-box">
                         <h2>Pre-selected Choices</h2>
-                        <button className="amount-button" value="5" onClick={"5"}>$5</button>
-                        <button className="amount-button" value="10">$10</button>
-                        <button className="amount-button" value="20">$20</button>
-                        <button className="amount-button" value="50">$50</button>
-                        <button id="amount-width" className="amount-button" data-value="100" >$100</button>
+
+                        {/* Button Choices */}
+                        <button className="amount-button" onClick={() => handleClick("5")} 
+                            style={{backgroundColor: isActive === "5" ? "#4169e1" : ""}} >$5</button>
+                        
+                        <button className="amount-button" onClick={() => handleClick("10")} 
+                            style={{backgroundColor: isActive === "10" ? "#4169e1" : ""}}>$10</button>
+                        
+                        <button className="amount-button" onClick={() => handleClick("20")}
+                            style={{backgroundColor: isActive === "20" ? "#4169e1" : ""}}>$20</button>
+                        
+                        <button className="amount-button" onClick={() => handleClick("50")}
+                            style={{backgroundColor: isActive === "50" ? "#4169e1" : ""}}>$50</button>
+                        
+                        <button id="amount-width" className="amount-button" onClick={() => handleClick("100")}
+                            style={{backgroundColor: isActive === "100" ? "#4169e1" : ""}}>$100</button>
                     </div>
 
                     {/* Field for user to add amount */}
