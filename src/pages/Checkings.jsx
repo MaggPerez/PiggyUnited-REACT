@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import Sidebar from "../components/Sidebar";
-import { addUser, getUsers, getBalance, setDeposit, setWithdraw } from '../Bank';
+import { getBalance, setDeposit, setWithdraw } from '../Bank';
 import PageComponent from "../components/PageComponent";
 import Balance from "../components/Balance";
 
@@ -15,90 +15,108 @@ function Checkings(){
     setDocumentTitle("Checkings")
     const [balance, setBalance] = useState(0)
     const [userAmount, setAmount] = useState("");
-    const [withdraw, setWithdrawal] = useState(0);
 
     const [isActive, setActive] = useState(null);
+    const bankAccount = "checkings";
+
+    //List of numbers that will be used to compare choose which amount option the user picks
+    const arrayList = ["5", "10", "20", "50", "100"];
+
+    
 
     /**
      * Retrieves user's available balance for checkings
      */
     useEffect(() => {
+        
         async function fetchBalance(){
-            const data = await getBalance('checkings', sessionStorage.getItem('username'));
+            const data = await getBalance(bankAccount, sessionStorage.getItem('username'));
             setBalance(data.balance);
         }
         fetchBalance();
     }, []);
 
 
+
+
     /**
-     * Function to deposit user's amount into firebase
+     * Function for the default amount choices the user picks to make a transactions
+     * @param {default choices the user can pick to make a transaction} amountChoice 
+     * @param {will be used to check if the user clicks on deposit or withdraw} action 
      */
-    const handleDeposit = async () => {
-        const arrayList = ["5", "10", "20", "50", "100"];
-        
-        //If an amount choice was selected and the user puts in a value, both gets added into one
-        if(isActive && userAmount !== ""){
-            for(let i = 0; i < arrayList.length; i++){
-                if(isActive === arrayList[i]){
+    const handleAmountOptions = async (amountChoice, action) => {
+        if(action === 'deposit'){
+            await setDeposit(bankAccount, sessionStorage.getItem('username'), amountChoice, setBalance);
 
-                    //Adding both amount choice and user's value
-                    handleAmountOptions(Number(arrayList[i]) + userAmount);
-                }
-            }
-        }
-        //Checking if one of the pre-selected choices was chosen
-        else if(isActive){
-
-            //If a pre-selected choice was picked and it equals "5 or 10 or 20, etc," it will get deposited
-            for(let i = 0; i < arrayList.length; i++){
-                if(isActive === arrayList[i]){
-                    handleAmountOptions(Number(arrayList[i]));
-                }
-            }
-
-        }
-            //If none of the choices were selected and input field is empty, an alert will be sent
-        else if(userAmount === ""){
-            alert("Enter amount");
         }
         else{
-            await setDeposit(userAmount, setBalance);
-
-            //Clears the input field
-            setAmount('');
+            await setWithdraw(bankAccount, sessionStorage.getItem('username'), amountChoice, setBalance);
         }
-    }
-
-    /**
-     * 
-     * @param {The pre} amountChoice 
-     */
-    const handleAmountOptions = async (amountChoice) => {
-        await setDeposit(amountChoice, setBalance, sessionStorage.getItem('username'));
 
         //Clearing input field and deselecting amount choice
         setActive('');
         setAmount('');
     }
 
+
+
+
     /**
-     * Function to withdraw user's amount into firebase
+     * Function that handles user's transactions for deposit and withdraw.
+     * @param {*} action 
      */
-    const handleWithdrawal = async () => {
-        if(userAmount === ""){
+    const handleTransaction = async (action) => {
+
+        //If an amount choice was selected and the user puts in a value, both gets added into one
+        if(isActive && userAmount !== ""){
+
+            for(let i = 0; i < arrayList.length; i++){
+                if(isActive === arrayList[i]){
+
+                    //Adding both amount choice and user's value
+                    handleAmountOptions(Number(arrayList[i]) + userAmount, action);
+                }
+            }
+        }
+
+        //Checking if one of the pre-selected choices was chosen
+        else if(isActive){
+
+            //If a pre-selected choice was picked and it equals "5 or 10 or 20, etc," it will get withdrawn
+            for(let i = 0; i < arrayList.length; i++){
+                if(isActive === arrayList[i]){
+                    handleAmountOptions(Number(arrayList[i]), action);
+                }
+            }
+
+        }
+
+            //If none of the choices were selected and input field is empty, an alert will be sent
+        else if(userAmount === ""){
             alert("Enter amount");
         }
+
         else{
-            await setWithdraw(userAmount, setBalance, sessionStorage.getItem('username'));
+
+            //Checking to see if the user clicked on deposit or withdraw to proceed with the transactions
+            if(action === 'deposit'){
+                await setDeposit(bankAccount, sessionStorage.getItem('username'), userAmount, setBalance);
+            }
+            else{
+
+                await setWithdraw(bankAccount, sessionStorage.getItem('username'), userAmount, setBalance);
+            }
 
             //Clears the input field
             setAmount('');
         }
+        
     }
 
+
+
     /**
-     * Continue working here
+     * Functions that highlights the amount choices depending on which the user picks
      * @param {*} button 
      */
     const handleClick = async (selectedButton) => {
@@ -106,7 +124,6 @@ function Checkings(){
     }
 
 
-    //              Continue adding functions to the withdraw
 
     return (
         <>
@@ -163,8 +180,8 @@ function Checkings(){
                     {/* Field for user to deposit or withdraw */}
                     <div className="transaction-box">
                         <h2>Select your choice:</h2>
-                        <div id="hover-mode-deposit" onClick={handleDeposit} className="box"><h1>Deposit</h1></div>
-                        <div id="hover-mode-withdraw" onClick={handleWithdrawal} className="box"><h1>Withdraw</h1></div>
+                        <div id="hover-mode-deposit" onClick={() => handleTransaction('deposit')} className="box"><h1>Deposit</h1></div>
+                        <div id="hover-mode-withdraw" onClick={() => handleTransaction('withdraw')} className="box"><h1>Withdraw</h1></div>
                     </div>
 
                 </div>
