@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
-import Sidebar from "../Sidebar";
+import Sidebar from "../components/Sidebar";
 import { addUser, getUsers, getBalance, setWithdraw } from '../Bank';
-import PageComponent from "../PageComponent";
-import Balance from "../Balance";
+import PageComponent from "../components/PageComponent";
+import Balance from "../components/Balance";
 import { setDocumentTitle } from "../script";
 
 function Savings(){

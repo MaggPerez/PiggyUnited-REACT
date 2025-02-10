@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import Sidebar from "../Sidebar";
+import Sidebar from "../components/Sidebar";
 import { setDocumentTitle } from "../script";
 
 function Account(){

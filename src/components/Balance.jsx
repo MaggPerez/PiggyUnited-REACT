@@ -1,7 +1,7 @@
 
 
 import { useEffect, useState } from "react";
-import { getBalance } from "./Bank";
+import { getBalance } from "../Bank";
 
 /**
  * Function that fetches the user's balance depending on what page they're on
@@ -14,7 +14,7 @@ export function Balance({account}){
 
     useEffect(() => {
         async function fetchBalance() {
-            const data = await getBalance(account);
+            const data = await getBalance(account, sessionStorage.getItem('username'));
             setBalance(data.balance.toFixed(2));
         }
         fetchBalance();

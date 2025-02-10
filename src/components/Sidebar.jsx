@@ -1,7 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 const Sidebar = () => {
+  const navigate = useNavigate();
 
   // Function that helps to automatically display Sidebar when screen width is >= 1024
 //   window.addEventListener('resize', function() {
@@ -26,6 +28,12 @@ const Sidebar = () => {
     document.getElementById("mySidebar").style.width = "0";
   };
 
+  const logOut = () => {
+    localStorage.clear();
+    console.log("Cleared")
+    navigate('/logout')
+  }
+
   return (
     <div className='main'>
       <nav id="mySidebar" className="sidebar" style={{ transition: '0.3s' }}>
@@ -35,7 +43,7 @@ const Sidebar = () => {
         <Link to="/account">Account</Link>
         <Link to="/history">History</Link>
         {/* <Link to="">Credit Cards</Link> */}
-        <Link id="logout" to="/logout">Log out</Link>
+        <Link id="logout" onClick={logOut}>Log out</Link>
       </nav>
 
       <span id='hide-menu-icon' style={{ fontSize: '45px', cursor: 'pointer' }} onClick={openNav}>&#9776;</span>

@@ -40,6 +40,7 @@ const LoginFunctions = () => {
             .then(() => {
                 //Displays message that the account was created successfully
                 createAccountSuccessMessage(Username);
+                sessionStorage.setItem("username", Username);
                 setUsername('');
                 setPassword('');
             })
@@ -72,6 +73,7 @@ const LoginFunctions = () => {
                 //Checking to see if the user's password is correct
                 if(user.Password === Password){
                     loginSuccessMessage(Username)
+                    sessionStorage.setItem("username", user.Username)
                     setUserData(user);
                     setError("");
                     console.log("User logged in successfully!");

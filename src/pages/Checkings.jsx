@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
-import Sidebar from "../Sidebar";
+import Sidebar from "../components/Sidebar";
 import { addUser, getUsers, getBalance, setDeposit, setWithdraw } from '../Bank';
-import PageComponent from "../PageComponent";
-import Balance from "../Balance";
+import PageComponent from "../components/PageComponent";
+import Balance from "../components/Balance";
 
 import { setDocumentTitle } from "../script";
 
@@ -24,7 +24,7 @@ function Checkings(){
      */
     useEffect(() => {
         async function fetchBalance(){
-            const data = await getBalance('checkings');
+            const data = await getBalance('checkings', sessionStorage.getItem('username'));
             setBalance(data.balance);
         }
         fetchBalance();
@@ -75,7 +75,7 @@ function Checkings(){
      * @param {The pre} amountChoice 
      */
     const handleAmountOptions = async (amountChoice) => {
-        await setDeposit(amountChoice, setBalance);
+        await setDeposit(amountChoice, setBalance, sessionStorage.getItem('username'));
 
         //Clearing input field and deselecting amount choice
         setActive('');
@@ -90,7 +90,7 @@ function Checkings(){
             alert("Enter amount");
         }
         else{
-            await setWithdraw(userAmount, setBalance);
+            await setWithdraw(userAmount, setBalance, sessionStorage.getItem('username'));
 
             //Clears the input field
             setAmount('');

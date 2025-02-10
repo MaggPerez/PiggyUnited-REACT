@@ -2,8 +2,9 @@ import React from "react";
 import LoginFunctions from "../loginScript"
 import { setDocumentTitle } from "../script";
 
+
 function Login(){
-    setDocumentTitle("Login")
+    setDocumentTitle("Login");
     
     const {
         Username,

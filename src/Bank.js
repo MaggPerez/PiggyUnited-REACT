@@ -1,16 +1,9 @@
 import { db } from "./firebase"
 import { collection, addDoc, getDocs, getDoc, doc, updateDoc } from "firebase/firestore"
-import Balance from "./Balance";
-
-import { useState, useEffect } from "react";
-
+import { ref, set, get } from 'firebase/database';
+import { database } from "./firebase";
 
 
-
-
-//Getting the user's name
-let name = localStorage.getItem('username')
-let account = localStorage.getItem('pageName');
 
 
 // Function to add a user
@@ -27,6 +20,19 @@ export const addUser = async () => {
     }
 };
 
+export const getUser = async () => {
+  try{
+    const userRef = ref(database, `users/${Username}`)
+    const snapshot = await get(userRef);
+
+    const user = snapshot.val();
+    console.log(user)
+  }
+  catch(error){
+
+  }
+}
+
 //Gets all users
 export const getUsers = async () => {
     // const querySnapshot = await getDocs(collection(db, "checkings"));
@@ -37,16 +43,16 @@ export const getUsers = async () => {
 
 
 //Gets user info based on what account they are on
-export const getBalance = async (userAccount) => {
+export const getBalance = async (userAccount, name) => {
     try {
       const userRef = doc(db, userAccount, name);
       const userSnap = await getDoc(userRef);
       if (userSnap.exists()) {
         let balance = userSnap.data().balance;
-        localStorage.setItem("a", userSnap.data().balance );
-        return { balance: userSnap.balance, ...userSnap.data() };
+        return {balance: balance}
       } else {
         console.log("No such user found!");
+        return {balance: 0}
         return null;
       }
     } catch (error) {
@@ -61,10 +67,11 @@ export const getBalance = async (userAccount) => {
 /**
  * 
  * @param {The amount the user wants to deposit} depositAmount 
- * @param {setBalance will update the user's available balance} setBalance 
+ * @param {setBalance will update the user's available balance} setBalance
+ * @param {User's username to access their account} name
  * @returns 
  */
-export const setDeposit = async (depositAmount, setBalance) => {
+export const setDeposit = async (depositAmount, setBalance, name) => {
   const userRef = doc(db, "checkings", name);
   
   try {
@@ -93,7 +100,7 @@ export const setDeposit = async (depositAmount, setBalance) => {
 /**
  * Function to withdraw
  */
-export const setWithdraw = async (withdrawalAmount, setBalance) => {
+export const setWithdraw = async (withdrawalAmount, setBalance, name) => {
   const userRef = doc(db, "checkings", name);
   
   try {
@@ -116,3 +123,5 @@ export const setWithdraw = async (withdrawalAmount, setBalance) => {
       console.error("Error updating balance: ", e);
   }
 };
+
+

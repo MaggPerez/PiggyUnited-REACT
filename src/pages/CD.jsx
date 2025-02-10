@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-import Sidebar from "../Sidebar";
-import Balance from "../Balance";
+import Sidebar from "../components/Sidebar";
+import Balance from "../components/Balance";
 import { setDocumentTitle } from "../script";
 
 function CD(){

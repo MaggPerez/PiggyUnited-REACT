@@ -1,15 +1,23 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import Sidebar from "../Sidebar";
-import PageComponent from "../PageComponent";
+import Sidebar from "../components/Sidebar";
+import PageComponent from "../components/PageComponent";
 import {setDocumentTitle} from "../script"
+import { getUser } from "../Bank";
+import LoginFunctions from "../loginScript";
 
 
 
 
 function Dashboard() {
-    setDocumentTitle("Dashboard")
-    const name = localStorage.getItem("username");
+    setDocumentTitle("Dashboard");
+    const [name, setName] = useState('');
+
+    //Display username
+    useEffect(() => {
+        setName(sessionStorage.getItem("username"));
+    }, []);
+
     return(
         <>
             <Sidebar />
