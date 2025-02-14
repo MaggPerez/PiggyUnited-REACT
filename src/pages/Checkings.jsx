@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import Sidebar from "../components/Sidebar";
 import { getBalance, setDeposit, setWithdraw } from '../Bank';
 import PageComponent from "../components/PageComponent";
-import Balance from "../components/Balance";
+import AmountButton from "../components/AmountButton";
 
 import { setDocumentTitle } from "../script";
 
@@ -17,6 +17,8 @@ function Checkings(){
     const [userAmount, setAmount] = useState("");
 
     const [isActive, setActive] = useState(null);
+
+
     const bankAccount = "checkings";
 
     //List of numbers that will be used to compare choose which amount option the user picks
@@ -28,6 +30,8 @@ function Checkings(){
      * Retrieves user's available balance for checkings
      */
     useEffect(() => {
+        // Makes sure the screen goes to the top
+        window.scrollTo(0,0);
         
         async function fetchBalance(){
             const data = await getBalance(bankAccount, sessionStorage.getItem('username'));
@@ -149,25 +153,7 @@ function Checkings(){
                 {/* Container that contains all transaction behaviors */}
                 <div className="transaction-container">
                     {/* Field for user to select pre-selected choices */}
-                    <div className="amount-box">
-                        <h2>Pre-selected Choices</h2>
-
-                        {/* Button Choices */}
-                        <button className="amount-button" onClick={() => handleClick("5")} 
-                            style={{backgroundColor: isActive === "5" ? "#4169e1" : ""}} >$5</button>
-                        
-                        <button className="amount-button" onClick={() => handleClick("10")} 
-                            style={{backgroundColor: isActive === "10" ? "#4169e1" : ""}}>$10</button>
-                        
-                        <button className="amount-button" onClick={() => handleClick("20")}
-                            style={{backgroundColor: isActive === "20" ? "#4169e1" : ""}}>$20</button>
-                        
-                        <button className="amount-button" onClick={() => handleClick("50")}
-                            style={{backgroundColor: isActive === "50" ? "#4169e1" : ""}}>$50</button>
-                        
-                        <button id="amount-width" className="amount-button" onClick={() => handleClick("100")}
-                            style={{backgroundColor: isActive === "100" ? "#4169e1" : ""}}>$100</button>
-                    </div>
+                    <AmountButton activateActive={isActive} activateHandleClick={handleClick}></AmountButton>
 
                     {/* Field for user to add amount */}
                     <div className="transaction-box">
@@ -180,8 +166,8 @@ function Checkings(){
                     {/* Field for user to deposit or withdraw */}
                     <div className="transaction-box">
                         <h2>Select your choice:</h2>
-                        <div id="hover-mode-deposit" onClick={() => handleTransaction('deposit')} className="box"><h1>Deposit</h1></div>
-                        <div id="hover-mode-withdraw" onClick={() => handleTransaction('withdraw')} className="box"><h1>Withdraw</h1></div>
+                        <button id="deposit-button" onClick={() => handleTransaction('deposit')} className="box"><h1>Deposit</h1></button>
+                        <button id="withdraw-button" onClick={() => handleTransaction('withdraw')} className="box"><h1>Withdraw</h1></button>
                     </div>
 
                 </div>

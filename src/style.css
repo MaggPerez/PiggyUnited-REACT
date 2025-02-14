@@ -6,8 +6,8 @@
 }
 
 /* IDs */
-#hover-mode:hover, #hover-mode-deposit:hover
-, #hover-mode-withdraw:hover, .link:hover{
+#hover-mode:hover, #deposit-button:hover,
+#withdraw-button:hover, .link:hover{
     color: white;
     background-color: #4169e1;
     border: none;
@@ -21,7 +21,7 @@
 /* Sidebar creation */
 
 .sidebar{
-    position: relative;
+    position: relative; /* Delete this part */
     height: 100%;
     width: 200px; 
     position: fixed;
@@ -100,7 +100,8 @@
 
 .transaction-container{
     position: relative;
-    display: inline-block;
+    display: flex;
+    flex-direction: column;
     width: 100%;
 }
 
@@ -142,6 +143,13 @@
     cursor: pointer;
     margin-bottom: 1em;
     font-size: 11pt;
+
+}
+
+#deposit-button, #withdraw-button{
+    border: none;
+    width: 100%;
+    color: black;
 
 }
 
