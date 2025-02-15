@@ -1,9 +1,33 @@
 import { Link } from "react-router-dom";
 import Sidebar from "../components/Sidebar";
 import { setDocumentTitle } from "../script";
+import { useState, useEffect } from "react";
+import { getAllBalance } from "../Bank";
 
 function Account(){
     setDocumentTitle("Account")
+    const[checkingBalance, setCheckingBalance] = useState(0);
+    const[savingsBalance, setSavingsBalance] = useState(0);
+    const[cdBalance, setCDBalance] = useState(0);
+
+    //List of all accounts
+    const list_of_accounts = ["checkings", "savings", "cd"];
+
+    useEffect(() => {
+        window.scrollTo(0,0);
+
+        //Fetching all balances from firebase
+        async function fetchAllBalance() {
+            const data = await getAllBalance(list_of_accounts, sessionStorage.getItem('username'));
+
+            //Displaying all of user's balances
+            setCheckingBalance(data[0].balance), setSavingsBalance(data[1].balance), 
+            setCDBalance(data[2].balance);
+        }
+        fetchAllBalance();
+    });
+
+
     return(
         <>
             <Sidebar />
@@ -19,7 +43,7 @@ function Account(){
                             <div className="box-content">
                                 <img src="images/Checkings_Icon.svg" alt="Checkings Icon" />
                                 <h1>Checkings</h1>
-                                <p id="checkings-balance">$0.00</p>
+                                <p>{checkingBalance === undefined ? "$0.00" : `$${checkingBalance.toFixed(2)}`}</p>
                                 <p>Click to view</p>
                             </div>
                         </Link>
@@ -31,7 +55,7 @@ function Account(){
                             <div className="box-content">
                                 <img src="images/savings_icon.svg" alt="Savings Icon" />
                                 <h1>Savings</h1>
-                                <p id="savings-balance">$0.00</p>
+                                <p>{savingsBalance === undefined ? "$0.00" : `$${savingsBalance.toFixed(2)}`}</p>
                                 <p>Click to view</p>
                             </div>
                         </Link>
@@ -43,7 +67,7 @@ function Account(){
                             <div className="box-content">
                                 <img src="images/cd_icon.svg" alt="CD Icon" />
                                 <h1>CD</h1>
-                                <p id="cd-balance">$0.00</p>
+                                <p>{cdBalance === undefined ? "$0.00" : `$${cdBalance.toFixed(2)}`}</p>
                                 <p>Click to view</p>
                             </div>
                         </Link>

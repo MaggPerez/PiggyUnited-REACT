@@ -19,6 +19,25 @@ export const addUser = async (bankAccount, name, depositAmount, setBalance) => {
 };
 
 
+/**
+ * Function to automatically add Checking or Savings, or CD Account
+ * @param {*} bankAccount 
+ * @param {*} name 
+ * @param {*} amount 
+ * @returns 
+ */
+export const addAccount = async (bankAccount, name, amount) => {
+  try {
+    await setDoc(doc(db, bankAccount, name), {
+      balance: Number(amount)
+    });
+    return{balance: amount}
+  } catch (e) {
+    console.error("Error adding document: ", e);
+  }
+};
+
+
 
 export const getUser = async () => {
   try{
@@ -61,7 +80,62 @@ export const getBalance = async (bankAccount, name) => {
 };
 
 
+/**
+ * Function to get all balances 
+ * @param {All user accounts} arrayAccounts 
+ * @param {Name of user} name 
+ * @returns 
+ */
+export const getAllBalance = async (arrayAccounts, name) => {
+  try {
 
+    //Getting all references for checkings, savings, and cd
+    const checkingsRef = doc(db, arrayAccounts[0], name);
+    const savingsRef = doc(db, arrayAccounts[1], name);
+    const cdRef = doc(db, arrayAccounts[2], name);
+
+
+    //Getting all documents for each reference
+    const checkingsSnap = await getDoc(checkingsRef);
+    const savingsSnap = await getDoc(savingsRef);
+    const cdSnap = await getDoc(cdRef);
+
+
+    //Checking to see if there are any accounts that should be added
+    if(!checkingsSnap.exists()){addAccount(arrayAccounts[0], name, "0");}
+
+    if(!savingsSnap.exists()){addAccount(arrayAccounts[1], name, "0")}
+
+    if(!cdSnap.exists()){addAccount(arrayAccounts[2], name, "0");}
+
+
+    //Checking to see if they exist
+    if(checkingsSnap.exists() && savingsSnap.exists() && cdSnap.exists()){
+
+      //If they exist, we'll add the retrieve all balances
+      let checkingBalance = checkingsSnap.data().balance;
+      let savingsBalance = savingsSnap.data().balance;
+      let cdBalance = cdSnap.data().balance;
+      
+      //Setting user's balances
+      let c = {balance: checkingBalance};
+      let s = {balance: savingsBalance};
+      let cd = {balance: cdBalance};
+
+
+      //Putting them in a list and returning them
+      const listAcc = [c, s, cd];
+
+      return listAcc;
+      
+    }
+    
+    
+    
+  } catch (error) {
+    console.log("Error see why: " + error)
+  }
+}
 
 
 /**
@@ -110,6 +184,7 @@ export const setWithdraw = async (bankAccount, name, withdrawalAmount, setBalanc
       const userSnap = await getDoc(userRef);
       if (!userSnap.exists()) {
           console.log("No such user found!");
+          addUser(bankAccount, name, withdrawalAmount, setBalance);
           return;
       }
 
