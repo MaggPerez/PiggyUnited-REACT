@@ -1,3 +1,8 @@
+export const addTransaction = (count, amount, transactionType, availableBalance, date) => {
+    
+}
+
+
 class Transactions{
     constructor(){
         let blank = 0;
@@ -24,22 +29,23 @@ class Transactions{
          * @param {*} availableBalance 
          * @param {*} date 
          */
-    addTransaction(account, amount, transactionType, availableBalance, date){
-        console.log("This working")
-        if(transactionType === "Deposit"){
-            let transactions = JSON.parse(localStorage.getItem('transactions')) || [];
-            transactions.push({ account, amount, transactionType, availableBalance, date });
-            localStorage.setItem('transactions', JSON.stringify(transactions));
+    // addTransaction(account, amount, transactionType, availableBalance, date){
+    //     console.log("This working")
+    //     if(transactionType === "Deposit"){
+    //         let transactions = JSON.parse(localStorage.getItem('transactions')) || [];
+    //         transactions.push({ account, amount, transactionType, availableBalance, date });
+    //         localStorage.setItem('transactions', JSON.stringify(transactions));
 
-        }
-        else{
-            amount = amount * -1;
-            let transactions = JSON.parse(localStorage.getItem('transactions')) || [];
-            transactions.push({ account, amount, transactionType, availableBalance, date });
-            localStorage.setItem('transactions', JSON.stringify(transactions));
-        }
+    //     }
+    //     else{
+    //         amount = amount * -1;
+    //         let transactions = JSON.parse(localStorage.getItem('transactions')) || [];
+    //         transactions.push({ account, amount, transactionType, availableBalance, date });
+    //         localStorage.setItem('transactions', JSON.stringify(transactions));
+    //     }
 
-    }
+    // }
+
 
 
     /**
