@@ -62,7 +62,7 @@ function Dashboard() {
                     <div id="hover-mode" className="box">
                         <div className="box-content">
                             <img src="images/Credit_Card.svg" alt="Credit Card Icon" />
-                            <h1>Credit Cards (Coming Soon)</h1>
+                            <h1>Credit Cards</h1>
                         </div>
                     </div>
 

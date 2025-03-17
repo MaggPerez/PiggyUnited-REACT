@@ -139,7 +139,7 @@ export const getAllBalance = async (arrayAccounts, name) => {
 
 
 /**
- * @param {The account the user is on}
+ * @param {The account the user is on} bankAccount
  * @param {User's username to access their account} name
  * @param {The amount the user wants to deposit} depositAmount 
  * @param {setBalance will update the user's available balance} setBalance
@@ -166,6 +166,12 @@ export const setDeposit = async (bankAccount, name, depositAmount, setBalance) =
       });
 
       setBalance(newBalance); // Update UI immediately
+
+      //Getting today's date
+      const date = createDate();
+
+      //adding transaction to history
+      addTransaction(bankAccount, depositAmount, "Deposit", newBalance, date);
       console.log(`Updated balance: ${newBalance}`);
   } catch (e) {
       console.error("Error updating balance: ", e);
@@ -196,10 +202,54 @@ export const setWithdraw = async (bankAccount, name, withdrawalAmount, setBalanc
       });
 
       setBalance(newBalance); // Update UI immediately
+
+      //Getting today's date
+      const date = createDate();
+
+      //adding transaction to history
+      addTransaction(bankAccount, withdrawalAmount, "Withdraw", newBalance, date);
+
       console.log(`Updated balance: ${newBalance}`);
   } catch (e) {
       console.error("Error updating balance: ", e);
   }
 };
 
+
+/**
+ * Method to create today's date object
+ * @returns Today's Date
+ */
+const createDate = () => {
+   const today = new Date();
+   const formattedDate = today.toLocaleDateString();
+   return formattedDate;
+}
+
+
+/**
+ * Method that adds transaction status and will display to History
+ * @param {string} account 
+ * @param {number} amount 
+ * @param {string} transactionType 
+ * @param {number} availableBalance 
+ * @param {object} date 
+ */
+const addTransaction = (account, amount, transactionType, availableBalance, date) => {
+  console.log("Works")
+      if(transactionType === "Deposit"){
+          console.log("check")
+          let transactions = JSON.parse(localStorage.getItem('transactions')) || [];
+          transactions.push({ account, amount, transactionType, availableBalance, date });
+          localStorage.setItem('transactions', JSON.stringify(transactions));
+
+      }
+      else{
+          amount = amount * -1;
+          let transactions = JSON.parse(localStorage.getItem('transactions')) || [];
+          transactions.push({ account, amount, transactionType, availableBalance, date });
+          localStorage.setItem('transactions', JSON.stringify(transactions));
+      }
+
+}
 
