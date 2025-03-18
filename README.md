@@ -2,14 +2,30 @@
 
 Online banking simulation to help educate the important of banking for newcomers.
 
+## Login
+- Existing users can login while new users can create a new account.
+<img width="1800" alt="Screenshot 2025-03-17 at 8 30 32 PM" src="https://github.com/user-attachments/assets/20609d61-898a-42d2-81d4-c60d48663d17" />
+
+
 ## Dashboard
-<img width="1800" alt="Screenshot 2025-02-27 at 7 53 31 PM" src="https://github.com/user-attachments/assets/a4008e19-0732-4391-8bc4-0391b0bc8e36" />
+- Dashboard where the user can select their desired choice.
+<img width="1800" alt="Screenshot 2025-03-17 at 8 32 20 PM" src="https://github.com/user-attachments/assets/f3484721-097e-4ab9-b899-0ef0909cb1e1" />
+
+## Account
+- The user can view all their accounts with their available balances.
+<img width="1800" alt="Screenshot 2025-03-17 at 8 33 14 PM" src="https://github.com/user-attachments/assets/80f41ce8-ec4d-49fb-9da4-02bfffcfb9ea" />
 
 
-## Example of an account
-<img width="1800" alt="Screenshot 2025-02-27 at 7 34 58 PM" src="https://github.com/user-attachments/assets/73646234-3dd1-4fb2-b3c1-03961346b59e" />
+
+## Example of an account (Checkings)
+- Showcases what the user can do such as selecting a default amount ($50 or $100).
+- Giving the option to deposit or withdraw.
+<img width="1800" alt="Screenshot 2025-03-17 at 8 35 59 PM" src="https://github.com/user-attachments/assets/3808a338-7307-4f5f-a855-bd152b22a5b6" />
+
 
 
 ## History
-<img width="1800" alt="Screenshot 2025-02-27 at 7 40 06 PM" src="https://github.com/user-attachments/assets/7915c891-e6cf-4277-a9d8-ba9ef3bbfcd7" />
+- A statement of current transactions that the user did.
+<img width="1800" alt="Screenshot 2025-03-17 at 8 30 14 PM" src="https://github.com/user-attachments/assets/ec0024a0-2122-426e-8f89-2e2e69ba0f09" />
+
 
