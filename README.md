@@ -29,3 +29,10 @@ Online banking simulation to help educate the important of banking for newcomers
 <img width="1800" alt="Screenshot 2025-03-17 at 8 30 14 PM" src="https://github.com/user-attachments/assets/ec0024a0-2122-426e-8f89-2e2e69ba0f09" />
 
 
+
+## Credit Cards
+- The user can generate their own credit card
+<img width="1800" alt="Screenshot 2025-03-17 at 8 30 23 PM" src="https://github.com/user-attachments/assets/dd82035e-75f6-4dfe-bc1d-ea38fb74ed7c" />
+
+
+
