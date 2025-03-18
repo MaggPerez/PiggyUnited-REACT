@@ -42,7 +42,7 @@ const Sidebar = () => {
         <Link to="/dashboard">Home</Link>
         <Link to="/account">Account</Link>
         <Link to="/history">History</Link>
-        {/* <Link to="">Credit Cards</Link> */}
+        <Link to="/creditcards">Credit Cards</Link>
         <Link id="logout" onClick={logOut}>Log out</Link>
       </nav>
 

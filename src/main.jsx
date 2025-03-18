@@ -13,6 +13,7 @@ import Savings from './pages/Savings.jsx'
 import CD from './pages/CD.jsx'
 import Account from './pages/Account.jsx'
 import History from './pages/History.jsx'
+import CreditCards from './pages/CreditCards.jsx'
 
 const router = createBrowserRouter([{
   path: '/',
@@ -42,6 +43,10 @@ const router = createBrowserRouter([{
 {
   path: '/cd',
   element: <CD />
+},
+{
+  path: '/creditcards',
+  element: <CreditCards />
 },
 {
   path: 'history',

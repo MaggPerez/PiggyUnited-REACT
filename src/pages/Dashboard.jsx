@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Sidebar from "../components/Sidebar";
 import PageComponent from "../components/PageComponent";
-import {setDocumentTitle} from "../script"
+import { setDocumentTitle } from "../script"
 import { getUser } from "../Bank";
 import LoginFunctions from "../loginScript";
 
@@ -18,7 +18,7 @@ function Dashboard() {
         setName(sessionStorage.getItem("username"));
     }, []);
 
-    return(
+    return (
         <>
             <Sidebar />
             <main className="main">
@@ -34,7 +34,7 @@ function Dashboard() {
                                 <img src="images/Checkings_Icon.svg" alt="Checkings Icon" />
                                 <h1>Checkings</h1>
                             </div>
-                        
+
                         </Link>
                     </div>
 
@@ -60,10 +60,12 @@ function Dashboard() {
 
                     {/* Credit Card Window */}
                     <div id="hover-mode" className="box">
-                        <div className="box-content">
-                            <img src="images/Credit_Card.svg" alt="Credit Card Icon" />
-                            <h1>Credit Cards</h1>
-                        </div>
+                        <Link className="link" to="/creditcards">
+                            <div className="box-content">
+                                <img src="images/Credit_Card.svg" alt="Credit Card Icon" />
+                                <h1>Credit Cards</h1>
+                            </div>
+                        </Link>
                     </div>
 
                     {/* History Window */}
@@ -73,7 +75,7 @@ function Dashboard() {
                                 <img src="images/history_icon.svg" alt="History Icon" />
                                 <h1>History</h1>
                             </div>
-                        
+
                         </Link>
                     </div>
                 </div>

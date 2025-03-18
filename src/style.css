@@ -129,6 +129,60 @@
     height: auto;
 }
 
+.credit-card-container{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50vh;
+    width: 100%;
+    gap: 5em;
+    
+}
+
+.credit-card-content{
+    padding-top: 5em;
+    font-weight: 500;
+    font-size: medium;
+    
+}
+
+.credit-card-content > p {
+    width: 100%;
+}
+
+.credit-card-img {
+    position: relative;
+    background-image: url("/images/credit_card_image.svg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 100%;  /* Or specific width */
+    height: 50%; /* Or specific height */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* For the text that goes on top */
+.credit-card-img > * {
+    position: relative;
+    /* z-index: 1; */
+    color: white;
+}
+
+.generate-button{
+    border: none;
+    border-radius: 10px;
+    padding: 15px 35px;
+    background-color: #4169e1;
+    color: white;
+    cursor: pointer;
+    margin-bottom: 1em;
+    font-size: 11pt;
+}
+
+
 
 
 
@@ -254,6 +308,7 @@
 .link{
     text-decoration: none;
     color: black;
+    font-size: 12pt;
 }
 
 
@@ -291,6 +346,11 @@ tr:nth-child(even){
         padding: 10px;
     }
 
+    .credit-card-container{
+        flex-direction: column;
+    }
+
+
     
 }
 
@@ -316,6 +376,19 @@ tr:nth-child(even){
         margin-right: 1em;
         margin-left: 1em;
     }
+
+    .credit-card-container{
+        flex-direction: column;
+        height: 75vh;
+        width: 100%;
+        gap: 1em;
+    }
+
+    .credit-card-img{
+        height: 75%;
+        width: 75%;
+    }
+        
 
    
 }
@@ -372,5 +445,22 @@ tr:nth-child(even){
         margin-top: -50%;
         margin-left: -30px;
         height: auto;
+    }
+
+    .credit-card-container{
+        flex-direction: column;
+        height: 75vh;
+    }
+
+    .credit-card-img {
+        width: 50%;  /* Or specific width */
+        height: 100%; /* Or specific height */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .credit-card-content{
+        font-size: x-large;
     }
 }
