@@ -1,11 +1,23 @@
 import { useState, useEffect } from "react";
+import { getTransactionHistory } from "../Bank";
 
 function TransactionTable() {
     const [transData, setTransData] = useState([]);
 
     useEffect(() => {
-        const loadedData = JSON.parse(localStorage.getItem('transactions')) || []
-        setTransData(loadedData);
+        async function fetchHistory() {
+            try {
+                //getting transaction data in array format
+                const loadedData = await getTransactionHistory();
+
+                //setting the TransData
+                setTransData(loadedData || []);
+            } catch (error) {
+                console.error(error)
+            }
+        }
+
+        fetchHistory();
     }, []);
 
 
@@ -24,13 +36,13 @@ function TransactionTable() {
                     {transData.map((val, key) => {
                         return (
                             <tr key={key}>
-                                <td>{val.account}</td>
-                                <td>${val.amount.toFixed(2)}</td>
-                                <td>{val.transactionType}</td>
-                                <td>${val.availableBalance.toFixed(2)}</td>
-                                <td>{val.date}</td>
+                                <td>{val.Account}</td>
+                                <td>${val.Amount.toFixed(2)}</td>
+                                <td>{val.TransactionType}</td>
+                                <td>${val.AvailableBalance.toFixed(2)}</td>
+                                <td>{val.Date}</td>
                             </tr>
-                        )
+                        );
                     })}
                 </thead>
             </table>

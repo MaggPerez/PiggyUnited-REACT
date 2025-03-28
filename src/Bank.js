@@ -1,5 +1,5 @@
 import { db } from "./firebase"
-import { getDoc, setDoc, doc, updateDoc } from "firebase/firestore"
+import { getDoc, setDoc, getDocs, doc, updateDoc, collection } from "firebase/firestore"
 import { ref, get } from 'firebase/database';
 import { database } from "./firebase";
 
@@ -82,7 +82,7 @@ export const getBalance = async (bankAccount, name) => {
  * Function to get all balances 
  * @param {string[]} arrayAccounts 
  * @param {string} name 
- * @returns 
+ * @returns all of the user's account
  */
 export const getAllBalance = async (arrayAccounts, name) => {
   try {
@@ -127,8 +127,6 @@ export const getAllBalance = async (arrayAccounts, name) => {
       return listAcc;
 
     }
-
-
 
   } catch (error) {
     console.log("Error see why: " + error)
@@ -241,18 +239,77 @@ const createDate = () => {
  */
 const addTransaction = (account, amount, transactionType, availableBalance, date) => {
   if (transactionType === "Deposit") {
-    console.log("check")
     let transactions = JSON.parse(localStorage.getItem('transactions')) || [];
     transactions.push({ account, amount, transactionType, availableBalance, date });
     localStorage.setItem('transactions', JSON.stringify(transactions));
-
+    addTransactionHistory(account, amount, transactionType, availableBalance, date);
   }
   else {
     amount = amount * -1;
     let transactions = JSON.parse(localStorage.getItem('transactions')) || [];
     transactions.push({ account, amount, transactionType, availableBalance, date });
     localStorage.setItem('transactions', JSON.stringify(transactions));
+    addTransactionHistory(account, amount, transactionType, availableBalance, date);
   }
 
 }
 
+/**
+ * Function to add transaction history to firebase
+ * @param {string} account 
+ * @param {number} amount 
+ * @param {string} transactionType 
+ * @param {number} availableBalance 
+ * @param {object} date 
+ */
+const addTransactionHistory = async (account, amount, transactionType, availableBalance, date) => {
+  try {
+    const user = sessionStorage.getItem("username");
+    const userHistoryRef = doc(db, "History", user);
+    const statementCollection = collection(userHistoryRef, "Statements");
+    const statementDoc = doc(statementCollection, Date.now().toString());
+
+    await setDoc(statementDoc, {
+      Account: account,
+      Amount: amount,
+      TransactionType: transactionType,
+      AvailableBalance: availableBalance,
+      Date: date
+    });
+  } catch (error) {
+    console.error("Error adding transaction history:", error)
+  }
+}
+
+
+/**
+ * Function to get user's transaction history to be display on the History Page
+ * @returns user's transaction history
+ */
+export const getTransactionHistory = async () => {
+  try {
+    const user = sessionStorage.getItem("username");
+    if (!user) return [];
+
+    const userHistoryRef = doc(db, "History", user);
+    const statementCollection = collection(userHistoryRef, "Statements");
+
+    //get all documents from the Statements subcollection
+    const statementsSnapshot = await getDocs(statementCollection);
+
+    const listOfStatements = [];
+
+    statementsSnapshot.forEach((doc) => {
+      listOfStatements.push({
+        id: doc.id,
+        ...doc.data()
+      });
+    });
+
+    return listOfStatements;
+
+  } catch (error) {
+    console.error("Error getting transaction history:", error);
+    return [];
+  }
+}
