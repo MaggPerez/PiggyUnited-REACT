@@ -3,36 +3,42 @@ import Sidebar from "../components/Sidebar";
 import { setDocumentTitle } from "../script";
 import { useState, useEffect } from "react";
 import { getAllBalance } from "../Bank";
+import PageTitle from "../components/PageTitle";
 
-function Account(){
+function Account() {
     setDocumentTitle("Account")
-    const[checkingBalance, setCheckingBalance] = useState(0);
-    const[savingsBalance, setSavingsBalance] = useState(0);
-    const[cdBalance, setCDBalance] = useState(0);
+    const [checkingBalance, setCheckingBalance] = useState(0);
+    const [savingsBalance, setSavingsBalance] = useState(0);
+    const [cdBalance, setCDBalance] = useState(0);
 
     //List of all accounts
     const list_of_accounts = ["checkings", "savings", "cd"];
 
     useEffect(() => {
-        window.scrollTo(0,0);
+        window.scrollTo(0, 0);
 
         //Fetching all balances from firebase
         async function fetchAllBalance() {
             const data = await getAllBalance(list_of_accounts, sessionStorage.getItem('username'));
 
             //Displaying all of user's balances
-            setCheckingBalance(data[0].balance), setSavingsBalance(data[1].balance), 
-            setCDBalance(data[2].balance);
+            setCheckingBalance(data[0].balance), setSavingsBalance(data[1].balance),
+                setCDBalance(data[2].balance);
         }
+
+        //Fetching all balances
         fetchAllBalance();
     });
 
 
-    return(
+    return (
         <>
             <Sidebar />
             <main className="main">
-                <h1>Account</h1>
+
+                {/* Displaying page name*/}
+                <h1><PageTitle /></h1>
+
                 <h3>Click to View Your Accounts</h3>
 
                 <div className="container">
@@ -72,7 +78,7 @@ function Account(){
                             </div>
                         </Link>
                     </div>
-                    
+
                 </div>
             </main>
         </>

@@ -1,19 +1,22 @@
 
-import { useState, useEffect } from "react";
 import Sidebar from "../components/Sidebar";
 import { setDocumentTitle } from "../script";
 import TransactionTable from "../components/TransactionTable";
+import PageTitle from "../components/PageTitle";
 
-function History(){
+function History() {
     setDocumentTitle("History")
 
-    return(
+    return (
         <>
             <Sidebar />
             <main className="main">
-                <h1>History</h1>
+
+                {/* Displaying page name*/}
+                <h1><PageTitle /></h1>
+
                 <TransactionTable />
-                
+
             </main>
         </>
     );

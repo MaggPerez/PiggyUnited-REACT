@@ -1,7 +1,6 @@
-
 import { useState, useEffect } from "react";
 
-function TransactionTable(){
+function TransactionTable() {
     const [transData, setTransData] = useState([]);
 
     useEffect(() => {
@@ -11,7 +10,7 @@ function TransactionTable(){
 
 
 
-    return(
+    return (
         <div>
             <table>
                 <thead>
@@ -23,14 +22,14 @@ function TransactionTable(){
                         <th title="Date">Date</th>
                     </tr>
                     {transData.map((val, key) => {
-                        return(
+                        return (
                             <tr key={key}>
-                            <td>{val.account}</td>
-                            <td>${val.amount.toFixed(2)}</td>
-                            <td>{val.transactionType}</td>
-                            <td>${val.availableBalance.toFixed(2)}</td>
-                            <td>{val.date}</td>
-                        </tr>
+                                <td>{val.account}</td>
+                                <td>${val.amount.toFixed(2)}</td>
+                                <td>{val.transactionType}</td>
+                                <td>${val.availableBalance.toFixed(2)}</td>
+                                <td>{val.date}</td>
+                            </tr>
                         )
                     })}
                 </thead>

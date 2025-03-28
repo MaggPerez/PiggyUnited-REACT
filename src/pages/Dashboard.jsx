@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Sidebar from "../components/Sidebar";
-import PageComponent from "../components/PageComponent";
+import PageTitle from "../components/PageTitle";
 import { setDocumentTitle } from "../script"
-import { getUser } from "../Bank";
-import LoginFunctions from "../loginScript";
 
 
 
@@ -22,7 +20,10 @@ function Dashboard() {
         <>
             <Sidebar />
             <main className="main">
-                <h1>Dashboard</h1>
+
+                {/* Displaying page name*/}
+                <h1><PageTitle /></h1>
+
                 <h3 id="welcome-user">Welcome {name}! Select your desired choice below.</h3>
 
                 <div id="main-container" className="container">

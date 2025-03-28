@@ -2,16 +2,12 @@ import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import Sidebar from "../components/Sidebar";
 import { getBalance, setDeposit, setWithdraw } from '../Bank';
-import PageComponent from "../components/PageComponent";
+import PageTitle from "../components/PageTitle";
 import AmountButton from "../components/AmountButton";
-
 import { setDocumentTitle } from "../script";
 
 
-
-
-
-function Checkings(){
+function Checkings() {
     setDocumentTitle("Checkings")
     const [balance, setBalance] = useState(0)
     const [userAmount, setAmount] = useState("");
@@ -24,16 +20,16 @@ function Checkings(){
     //List of numbers that will be used to compare choose which amount option the user picks
     const arrayList = ["5", "10", "20", "50", "100"];
 
-    
+
 
     /**
      * Retrieves user's available balance for checkings
      */
     useEffect(() => {
         // Makes sure the screen goes to the top
-        window.scrollTo(0,0);
-        
-        async function fetchBalance(){
+        window.scrollTo(0, 0);
+
+        async function fetchBalance() {
             const data = await getBalance(bankAccount, sessionStorage.getItem('username'));
             setBalance(data.balance);
         }
@@ -49,11 +45,11 @@ function Checkings(){
      * @param {will be used to check if the user clicks on deposit or withdraw} action 
      */
     const handleAmountOptions = async (amountChoice, action) => {
-        if(action === 'deposit'){
+        if (action === 'deposit') {
             await setDeposit(bankAccount, sessionStorage.getItem('username'), amountChoice, setBalance);
 
         }
-        else{
+        else {
             await setWithdraw(bankAccount, sessionStorage.getItem('username'), amountChoice, setBalance);
         }
 
@@ -72,10 +68,10 @@ function Checkings(){
     const handleTransaction = async (action) => {
 
         //If an amount choice was selected and the user puts in a value, both gets added into one
-        if(isActive && userAmount !== ""){
+        if (isActive && userAmount !== "") {
 
-            for(let i = 0; i < arrayList.length; i++){
-                if(isActive === arrayList[i]){
+            for (let i = 0; i < arrayList.length; i++) {
+                if (isActive === arrayList[i]) {
 
                     //Adding both amount choice and user's value
                     handleAmountOptions(Number(arrayList[i]) + userAmount, action);
@@ -84,29 +80,29 @@ function Checkings(){
         }
 
         //Checking if one of the pre-selected choices was chosen
-        else if(isActive){
+        else if (isActive) {
 
             //If a pre-selected choice was picked and it equals "5 or 10 or 20, etc," it will get withdrawn
-            for(let i = 0; i < arrayList.length; i++){
-                if(isActive === arrayList[i]){
+            for (let i = 0; i < arrayList.length; i++) {
+                if (isActive === arrayList[i]) {
                     handleAmountOptions(Number(arrayList[i]), action);
                 }
             }
 
         }
 
-            //If none of the choices were selected and input field is empty, an alert will be sent
-        else if(userAmount === ""){
+        //If none of the choices were selected and input field is empty, an alert will be sent
+        else if (userAmount === "") {
             alert("Enter amount");
         }
 
-        else{
+        else {
 
             //Checking to see if the user clicked on deposit or withdraw to proceed with the transactions
-            if(action === 'deposit'){
+            if (action === 'deposit') {
                 await setDeposit(bankAccount, sessionStorage.getItem('username'), userAmount, setBalance);
             }
-            else{
+            else {
 
                 await setWithdraw(bankAccount, sessionStorage.getItem('username'), userAmount, setBalance);
             }
@@ -114,7 +110,7 @@ function Checkings(){
             //Clears the input field
             setAmount('');
         }
-        
+
     }
 
 
@@ -135,10 +131,10 @@ function Checkings(){
             <main className="main">
                 {/* Add link to go back */}
                 <Link to="/dashboard"><button className="back-button">Exit Checkings</button></Link>
-                    
-                    {/* Displaying title name and setting page name */}
-                <h1><PageComponent /></h1>
-                {/* <h1>Checkings</h1> */}
+
+                {/* Displaying page name*/}
+                <h1><PageTitle /></h1>
+
                 <h3>What would you like to do?</h3>
 
                 {/* Banner showcasing the user's available balance */}
@@ -159,8 +155,8 @@ function Checkings(){
                     <div className="transaction-box">
                         <h2 id="transaction-status">Enter Amount</h2>
                         <input type="number" name="Amount" id="amount-field" className="input-box"
-                        value={userAmount}
-                        onChange={(e) => setAmount(Number(e.target.value))} />
+                            value={userAmount}
+                            onChange={(e) => setAmount(Number(e.target.value))} />
                     </div>
 
                     {/* Field for user to deposit or withdraw */}

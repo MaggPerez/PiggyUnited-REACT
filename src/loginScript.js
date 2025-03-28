@@ -12,7 +12,7 @@ const LoginFunctions = () => {
     const [Password, setPassword] = useState("");
     const [UserID] = useState(new Date().getTime()); //Unique ID for the user
 
-    const[userData, setUserData] = useState(null);
+    const [userData, setUserData] = useState(null);
     const [error, setError] = useState("");
 
     const navigate = useNavigate();
@@ -25,18 +25,18 @@ const LoginFunctions = () => {
      * Unique ID is generated for the user.
      * @param e
      */
-    function signUpButton(e){
+    function signUpButton(e) {
 
         //Prevent the form from submitting
         e.preventDefault();
-        
-        
+
+
         //Adding user's data to the database
-            set(ref(database, `users/${Username}`), {
+        set(ref(database, `users/${Username}`), {
             Username: Username,
             Password: Password,
             UserID: UserID,
-            })
+        })
             .then(() => {
                 //Displays message that the account was created successfully
                 createAccountSuccessMessage(Username);
@@ -67,26 +67,26 @@ const LoginFunctions = () => {
             const snapshot = await get(userRef);
 
             //Checking to see if the user exists
-            if(snapshot.exists()){
+            if (snapshot.exists()) {
                 const user = snapshot.val();
 
                 //Checking to see if the user's password is correct
-                if(user.Password === Password){
+                if (user.Password === Password) {
                     loginSuccessMessage(Username)
                     sessionStorage.setItem("username", user.Username)
                     setUserData(user);
                     setError("");
                     console.log("User logged in successfully!");
 
-                    
+
                 }
-                else{
+                else {
                     //If the user's password is incorrect, display an error message
                     setError("Incorrect password");
                     loginFailedMessage();
                 }
             }
-            else{
+            else {
                 //If the user does not exist, display an error message
                 setError("User does not exist");
                 document.getElementById('login-message').innerHTML = "User does not exist!";
@@ -98,8 +98,8 @@ const LoginFunctions = () => {
             console.error("Error during sign in", error)
             setError("Error during sign in");
         }
-        
-    
+
+
     }
 
 
@@ -107,7 +107,7 @@ const LoginFunctions = () => {
      * Function that shows user that their login was successful
      * @param {*} user 
      */
-    function loginSuccessMessage(user){
+    function loginSuccessMessage(user) {
         localStorage.setItem("username", user)
 
         document.getElementById('login-message').innerHTML = "Logging in! Loading...";
@@ -115,7 +115,7 @@ const LoginFunctions = () => {
 
 
         //Add a little delay and then switch to the main menu
-        setTimeout(function(){
+        setTimeout(function () {
             navigate('/dashboard');
         }, 2000);
 
@@ -125,7 +125,7 @@ const LoginFunctions = () => {
     /**
      * Function that tells the user their login failed if they put an incorrect password
      */
-    function loginFailedMessage(){
+    function loginFailedMessage() {
         document.getElementById('login-message').innerHTML = "Incorrect Password, Try again!";
         document.getElementById('login-message').style.color = "#ff014f";
     }
@@ -136,7 +136,7 @@ const LoginFunctions = () => {
      * Function that tells user that their account creation was a success
      * @param {*} user 
      */
-    function createAccountSuccessMessage(user){
+    function createAccountSuccessMessage(user) {
         localStorage.setItem("username", user)
 
         document.getElementById('create-message').innerHTML = "Account created! Loading...";
@@ -144,7 +144,7 @@ const LoginFunctions = () => {
 
 
         //Add a little delay and then switch to the main menu
-        setTimeout(function(){
+        setTimeout(function () {
             navigate('/dashboard');
         }, 2000);
 
@@ -173,7 +173,7 @@ const LoginFunctions = () => {
         document.getElementById('login-field').style.display = "flex";
     }
 
-    return{
+    return {
         Username,
         setUsername,
         Password,

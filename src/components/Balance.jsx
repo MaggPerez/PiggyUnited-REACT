@@ -1,14 +1,12 @@
-
-
 import { useEffect, useState } from "react";
 import { getBalance } from "../Bank";
 
 /**
  * Function that fetches the user's balance depending on what page they're on
- * @param {account} param0 
- * @returns 
+ * @param {string} account 
+ * @returns user's balance based on what account they're on
  */
-export function Balance({account}){
+export function Balance({ account }) {
     const [balance, setBalance] = useState("0");
 
 
@@ -20,9 +18,9 @@ export function Balance({account}){
         fetchBalance();
     }, []);
 
-    return(
+    return (
         <>
-            <h1>{'$'+ balance}</h1>
+            <h1>{'$' + balance}</h1>
         </>
     );
 }

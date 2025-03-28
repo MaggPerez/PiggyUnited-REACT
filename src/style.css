@@ -1,4 +1,4 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -6,8 +6,10 @@
 }
 
 /* IDs */
-#hover-mode:hover, #deposit-button:hover,
-#withdraw-button:hover, .link:hover{
+#hover-mode:hover,
+#deposit-button:hover,
+#withdraw-button:hover,
+.link:hover {
     color: white;
     background-color: #4169e1;
     border: none;
@@ -20,10 +22,11 @@
 
 /* Sidebar creation */
 
-.sidebar{
-    position: relative; /* Delete this part */
+.sidebar {
+    position: relative;
+    /* Delete this part */
     height: 100%;
-    width: 200px; 
+    width: 200px;
     position: fixed;
     z-index: 1;
     top: 0;
@@ -34,7 +37,7 @@
     padding-top: 60px;
 }
 
-.sidebar a{
+.sidebar a {
     padding: 8px 8px 8px 32px;
     text-decoration: none;
     font-size: 25px;
@@ -43,11 +46,11 @@
     transition: 0.3s;
 }
 
-.sidebar a:hover{
+.sidebar a:hover {
     color: #f1f1f1;
 }
 
-.sidebar .closebtn{
+.sidebar .closebtn {
     position: absolute;
     top: 0;
     right: 25px;
@@ -55,7 +58,7 @@
     margin-left: 50px;
 }
 
-.sidebar > a > img{
+.sidebar>a>img {
     width: 50%;
     margin-top: -20%;
     margin-left: -30px;
@@ -63,7 +66,7 @@
     /* border: 2px solid red; */
 }
 
-.sidebar-active{
+.sidebar-active {
     width: 200px;
 }
 
@@ -71,17 +74,17 @@
 
 
 /* Main stuff */
-.main{
+.main {
     transition: margin-left .5s;
     padding: 10px;
 }
 
-.main > h1{
+.main>h1 {
     color: #4169e1;
     font-size: 30pt;
 }
 
-.main > h3{
+.main>h3 {
     color: #505050;
     padding-top: 1em;
     padding-bottom: 1em;
@@ -94,18 +97,21 @@
 /* Containers */
 
 
-.container, .transaction-container{
+.container,
+.transaction-container {
     padding-top: 20px;
 }
 
-.transaction-container{
+.transaction-container {
     position: relative;
     display: flex;
     flex-direction: column;
     width: 100%;
 }
 
-.box, .amount-box, .transaction-box{
+.box,
+.amount-box,
+.transaction-box {
     padding: 10px 10px;
     border-radius: 20px;
     background-color: white;
@@ -113,23 +119,23 @@
     margin-bottom: 25px;
 }
 
-.box-content{
+.box-content {
     width: 100%;
     /* border: 2px solid red; */
 }
 
-.box-content p{
+.box-content p {
     padding-top: 30px;
     font-size: 20pt;
 }
 
-.box-content img{
+.box-content img {
     width: 40%;
     padding: 1em;
     height: auto;
 }
 
-.credit-card-container{
+.credit-card-container {
     position: relative;
     display: flex;
     justify-content: center;
@@ -137,17 +143,17 @@
     height: 50vh;
     width: 100%;
     gap: 5em;
-    
+
 }
 
-.credit-card-content{
+.credit-card-content {
     padding-top: 5em;
     font-weight: 500;
     font-size: medium;
-    
+
 }
 
-.credit-card-content > p {
+.credit-card-content>p {
     width: 100%;
 }
 
@@ -157,21 +163,23 @@
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    width: 100%;  /* Or specific width */
-    height: 50%; /* Or specific height */
+    width: 100%;
+    /* Or specific width */
+    height: 50%;
+    /* Or specific height */
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 /* For the text that goes on top */
-.credit-card-img > * {
+.credit-card-img>* {
     position: relative;
     /* z-index: 1; */
     color: white;
 }
 
-.generate-button{
+.generate-button {
     border: none;
     border-radius: 10px;
     padding: 15px 35px;
@@ -188,7 +196,7 @@
 
 
 /* Buttons */
-.back-button{
+.back-button {
     border: none;
     border-radius: 10px;
     padding: 15px 35px;
@@ -200,7 +208,8 @@
 
 }
 
-#deposit-button, #withdraw-button{
+#deposit-button,
+#withdraw-button {
     border: none;
     width: 100%;
     color: black;
@@ -211,7 +220,7 @@
 
 
 /* Buttons for quick amount transaction */
-.amount-button{
+.amount-button {
     cursor: pointer;
     border: transparent;
     border-radius: 50px;
@@ -224,16 +233,16 @@
 
 }
 
-.amount-button.active{
+.amount-button.active {
     background-color: #4169e1;
     color: white;
 }
 
-#amount-width{
+#amount-width {
     width: 25%;
 }
 
-.amount-button:hover{
+.amount-button:hover {
     background-color: #4169e1;
     color: white;
 }
@@ -242,13 +251,13 @@
 
 
 /* Banners */
-.main .banner{
+.main .banner {
     margin-left: -10px;
     margin-right: -10px;
     width: calc(100% + 20px);
 }
 
-.banner{
+.banner {
     height: 20vh;
     background-color: #4169e1;
     background-size: cover;
@@ -261,17 +270,18 @@
     margin-left: -1.5em;
 }
 
-.banner::before{
+.banner::before {
     content: "";
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.4); /* This creates a dark overlay */
+    background-color: rgba(0, 0, 0, 0.4);
+    /* This creates a dark overlay */
 }
 
-.banner-text{
+.banner-text {
     color: white;
     font-size: 24px;
     text-align: center;
@@ -280,7 +290,7 @@
     /* z-index: 1; */
 }
 
-.banner-text h1{
+.banner-text h1 {
     margin-bottom: 10px;
 }
 
@@ -289,7 +299,7 @@
 
 
 /* Inputs */
-.input-box{
+.input-box {
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
@@ -305,7 +315,7 @@
 
 
 /* Other */
-.link{
+.link {
     text-decoration: none;
     color: black;
     font-size: 12pt;
@@ -319,148 +329,153 @@
 
 
 /* Tables */
-table{
+table {
     margin-top: 1em;
     border-collapse: collapse;
     width: 100%;
 }
 
-td, th{
+td,
+th {
     border: 1px solid #ddd;
     padding: 8px;
     text-align: left;
 }
 
-tr:nth-child(even){
+tr:nth-child(even) {
     background-color: #f2f2f2;
 }
 
 
 /* mobile */
-@media (max-width: 767px){
-    .sidebar{
+@media (max-width: 767px) {
+    .sidebar {
         width: 0;
     }
 
-    .main{
+    .main {
         padding: 10px;
     }
 
-    .credit-card-container{
+    .credit-card-container {
         flex-direction: column;
     }
 
 
-    
+
 }
 
 /* iPad */
-@media (min-width: 768px) and (max-width: 1023px){
-    .sidebar{
+@media (min-width: 768px) and (max-width: 1023px) {
+    .sidebar {
         width: 0;
     }
 
-    .main{
+    .main {
         margin-left: 0;
     }
 
-    .container{
+    .container {
         /* border: 3px solid red; */
         display: flex;
         flex-wrap: wrap;
         /* justify-content: space-between; */
     }
 
-    .box{
+    .box {
         width: 45%;
         margin-right: 1em;
         margin-left: 1em;
     }
 
-    .credit-card-container{
+    .credit-card-container {
         flex-direction: column;
         height: 75vh;
         width: 100%;
         gap: 1em;
     }
 
-    .credit-card-img{
+    .credit-card-img {
         height: 75%;
         width: 75%;
     }
-        
 
-   
+
+
 }
 
-@media (min-width: 1024px){
-    #hide-menu-icon{
+@media (min-width: 1024px) {
+    #hide-menu-icon {
         display: none;
         color: white;
     }
 
-    #hover-mode-deposit, #hover-mode-withdraw{
+    #hover-mode-deposit,
+    #hover-mode-withdraw {
         display: flex;
         justify-content: center;
         align-items: center;
 
     }
-    .sidebar{
+
+    .sidebar {
         width: 200px;
     }
 
-    .main{
+    .main {
         margin-left: 200px;
     }
 
-    .container{
+    .container {
         display: flex;
         flex-wrap: wrap;
         margin-left: 1em;
     }
 
-    .transaction-container{
+    .transaction-container {
         display: flex;
         flex-direction: column;
         flex-wrap: wrap;
     }
 
-    .amount-box{
+    .amount-box {
         width: 50%;
     }
 
 
-    .box{
+    .box {
         width: 30%;
 
         margin-right: 1.3em;
     }
 
-    .transaction-box{
+    .transaction-box {
         width: 50%;
     }
 
-    .sidebar > a > img{
+    .sidebar>a>img {
         width: 120%;
         margin-top: -50%;
         margin-left: -30px;
         height: auto;
     }
 
-    .credit-card-container{
+    .credit-card-container {
         flex-direction: column;
         height: 75vh;
     }
 
     .credit-card-img {
-        width: 50%;  /* Or specific width */
-        height: 100%; /* Or specific height */
+        width: 50%;
+        /* Or specific width */
+        height: 100%;
+        /* Or specific height */
         display: flex;
         justify-content: center;
         align-items: center;
     }
 
-    .credit-card-content{
+    .credit-card-content {
         font-size: x-large;
     }
 }

@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import Sidebar from '../components/Sidebar'
 import { setDocumentTitle } from '../script'
+import PageTitle from '../components/PageTitle'
 
 export default function CreditCards() {
   const [digits, setDigits] = useState("")
@@ -41,20 +42,22 @@ export default function CreditCards() {
     <>
       <Sidebar />
       <main className='main'>
-        <h1>Credit Cards</h1>
 
-          <div className="credit-card-container">
-            <div className="credit-card-img">
-              <div className="credit-card-content">
-                <p>{digits || sessionStorage.getItem('digits')}</p>
-              </div>
-            </div>
+        {/* Displaying page name*/}
+        <h1><PageTitle /></h1>
 
-            {/* Second section */}
-            <div>
-              <button className='generate-button' onClick={generateCreditCard}>Click to generate</button>
+        <div className="credit-card-container">
+          <div className="credit-card-img">
+            <div className="credit-card-content">
+              <p>{digits || sessionStorage.getItem('digits')}</p>
             </div>
           </div>
+
+          {/* Second section */}
+          <div>
+            <button className='generate-button' onClick={generateCreditCard}>Click to generate</button>
+          </div>
+        </div>
       </main>
 
 
