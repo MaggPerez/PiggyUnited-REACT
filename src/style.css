@@ -9,7 +9,7 @@
 #hover-mode:hover,
 #deposit-button:hover,
 #withdraw-button:hover,
-.link:hover {
+.link:hover{
     color: white;
     background-color: #4169e1;
     border: none;
@@ -24,7 +24,6 @@
 
 .sidebar {
     position: relative;
-    /* Delete this part */
     height: 100%;
     width: 200px;
     position: fixed;
@@ -63,7 +62,6 @@
     margin-top: -20%;
     margin-left: -30px;
     height: auto;
-    /* border: 2px solid red; */
 }
 
 .sidebar-active {
@@ -193,6 +191,16 @@
 
 
 
+/* History Containers */
+.history-container {
+    display: flex;
+    justify-content: right;
+    gap: 1em;
+}
+
+
+
+
 
 
 /* Buttons */
@@ -245,6 +253,15 @@
 .amount-button:hover {
     background-color: #4169e1;
     color: white;
+}
+
+.history-button {
+    cursor: pointer;
+    background-color: #4169e1;
+    color: white;
+    border: transparent;
+    padding: 1em;
+    border-radius: 3em;
 }
 
 

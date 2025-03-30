@@ -1,5 +1,5 @@
 import { db } from "./firebase"
-import { getDoc, setDoc, getDocs, doc, updateDoc, collection } from "firebase/firestore"
+import { getDoc, setDoc, getDocs, doc, updateDoc, collection, writeBatch } from "firebase/firestore"
 import { ref, get } from 'firebase/database';
 import { database } from "./firebase";
 
@@ -312,4 +312,38 @@ export const getTransactionHistory = async () => {
     console.error("Error getting transaction history:", error);
     return [];
   }
+}
+
+
+export const deleteTransactionHistory = async () => {
+  try {
+    const user = sessionStorage.getItem("username");
+    const userHistoryRef = doc(db, "History", user);
+    const statementCollection = collection(userHistoryRef, "Statements");
+
+    const statementsSnapshot = await getDocs(statementCollection);
+
+    if (statementsSnapshot.empty) {
+      alert("History is empty.")
+      return;
+    }
+
+    const batch = writeBatch(db);
+
+    statementsSnapshot.docs.forEach(doc => {
+      batch.delete(doc.ref);
+    })
+
+    await batch.commit();
+
+    alert("History Deleted!, Refresh Page to show.")
+
+
+
+
+  } catch (error) {
+    alert("Error")
+    console.log(error)
+  }
+
 }
