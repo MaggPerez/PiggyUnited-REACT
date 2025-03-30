@@ -25,8 +25,10 @@ Online banking simulation to help educate the important of banking for newcomers
 
 
 ## History
-- A statement of current transactions that the user did.
-<img width="1800" alt="Screenshot 2025-03-17 at 8 30 14 PM" src="https://github.com/user-attachments/assets/ec0024a0-2122-426e-8f89-2e2e69ba0f09" />
+- A statement that displays a user’s transaction history.
+<img width="1800" alt="Screenshot 2025-03-30 at 5 44 29 PM" src="https://github.com/user-attachments/assets/70c42f54-4ca9-4b54-a75d-069e468be9c0" />
+
+
 
 
 
