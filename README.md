@@ -2,6 +2,21 @@
 
 Online banking simulation to help educate the important of banking for newcomers.
 
+## Tech Stack
+
+### Frontend
+- **React** - JavaScript library for building user interfaces
+- **React Router DOM** - Declarative routing for React applications
+- **Vite** - Fast build tool and development server
+
+### Backend & Database
+- **Firebase** - Backend-as-a-Service for authentication and data storage
+  - Firebase Realtime Database - For real-time data synchronization
+  - Firebase Firestore - For document-based data storage
+
+### Styling
+- **CSS** - Custom stylesheets for UI design
+
 ## Login
 - Existing users can login while new users can create a new account.
 <img width="1800" alt="Screenshot 2025-03-17 at 8 30 32 PM" src="https://github.com/user-attachments/assets/20609d61-898a-42d2-81d4-c60d48663d17" />
